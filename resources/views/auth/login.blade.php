@@ -15,12 +15,10 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
-
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -44,4 +42,22 @@
             </x-primary-button>
         </div>
     </form>
+
+    {{-- Register link (Mobile only) --}}
+    @if (Route::has('register'))
+        <div class="mt-6 text-center block md:hidden">
+            <p class="text-sm text-gray-600">
+                Belum punya akun?
+                <a href="{{ route('register') }}" class="text-blue-600 font-semibold hover:underline">Daftar di sini</a>
+            </p>
+        </div>
+
+        {{-- Register link (Desktop only) --}}
+        <div class="mt-6 text-center hidden md:block">
+            <p class="text-sm text-gray-600">
+                Belum punya akun?
+                <a href="{{ route('register') }}" class="text-blue-600 font-semibold hover:underline">Klik untuk daftar</a>
+            </p>
+        </div>
+    @endif
 </x-guest-layout>

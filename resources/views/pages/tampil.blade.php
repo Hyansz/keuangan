@@ -174,28 +174,24 @@
 @endsection
 
 @section('content1')
-    <div class="p-3">
-
-        {{-- Filter Kategori dan Tahun Pemasukan --}}
-        <div class="mb-4 d-flex justify-content-between align-items-center">
-            <div class="text-center">
+    <div class="container-fluid p-3">
+        <div class="mb-4">
+            <div class="text-center mb-3">
                 <h4 class="pt-2">Aktifitas Pemasukan</h4>
             </div>
-            
-            <div class="d-flex align-items-center">
-                <div>
-                    <select name="kategori_pemasukan" id="kategori_pemasukan" class="form-select" style="width: 150px;">
+
+            <div class="row g-2 justify-content-center justify-content-lg-end align-items-center">
+                <div class="col-12 col-sm-auto mb-2 mb-sm-0">
+                    <select name="kategori_pemasukan" id="kategori_pemasukan" class="form-select w-100">
                         <option value="">Kategori</option>
                         @foreach ($categories->where('type', 'pemasukan') as $category)
-                            <option value="{{ $category->id }}">
-                                {{ $category->name }}
-                            </option>
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <div>
-                    <select name="tahun_pemasukan" id="tahun_pemasukan" class="form-select" style="width: 100px;">
+                <div class="col-12 col-sm-auto mb-2 mb-sm-0">
+                    <select name="tahun_pemasukan" id="tahun_pemasukan" class="form-select w-100">
                         <option value="">Tahun</option>
                         @foreach ($years as $year)
                             <option value="{{ $year }}">{{ $year }}</option>
@@ -205,7 +201,6 @@
             </div>
         </div>
 
-        {{-- Tabel Pemasukan --}}
         <div id="table-content-pemasukan">
             @include('pages.table_pemasukan', ['a' => $a])
         </div>

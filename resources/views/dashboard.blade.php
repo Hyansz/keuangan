@@ -252,38 +252,42 @@
 @endsection
 
 @section('content1')
-    <div class="p-3">
+    <div class="container-fluid p-3">
 
-        {{-- Filter Kategori dan Tahun Pemasukan --}}
-        <div class="mb-4 d-flex justify-content-between align-items-center">
-            <div class="text-center">
+        {{-- Judul dan Filter --}}
+        <div class="row mb-4 align-items-center">
+            {{-- Judul --}}
+            <div class="col-12 col-md-6 text-center text-md-start mb-2 mb-md-0">
                 <h4 class="pt-2">Aktifitas Pemasukan</h4>
             </div>
-            
-            <div class="d-flex align-items-center">
-                <div>
-                    <select name="kategori_pemasukan" id="kategori_pemasukan" class="form-select" style="width: 150px;">
-                        <option value="">Kategori</option>
-                        @foreach ($categories->where('type', 'pemasukan') as $category)
-                            <option value="{{ $category->id }}">
-                                {{ $category->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
 
-                <div>
-                    <select name="tahun_pemasukan" id="tahun_pemasukan" class="form-select" style="width: 100px;">
-                        <option value="">Tahun</option>
-                        @foreach ($years as $year)
-                            <option value="{{ $year }}">{{ $year }}</option>
-                        @endforeach
-                    </select>
+            {{-- Filter --}}
+            <div class="col-12 col-md-6">
+                <div class="row g-2 justify-content-center justify-content-md-end">
+                    {{-- Kategori --}}
+                    <div class="col-6 col-sm-5 col-md-5">
+                        <select name="kategori_pemasukan" id="kategori_pemasukan" class="form-select w-100">
+                            <option value="">Kategori</option>
+                            @foreach ($categories->where('type', 'pemasukan') as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- Tahun --}}
+                    <div class="col-6 col-sm-4 col-md-4">
+                        <select name="tahun_pemasukan" id="tahun_pemasukan" class="form-select w-100">
+                            <option value="">Tahun</option>
+                            @foreach ($years as $year)
+                                <option value="{{ $year }}">{{ $year }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
 
-        {{-- Tabel Pemasukan --}}
+        {{-- Tabel --}}
         <div id="table-content-pemasukan">
             @include('pages.table_pemasukan', ['a' => $a])
         </div>
@@ -307,38 +311,42 @@
 @endsection
 
 @section('content2')
-    <div class="p-3">
+    <div class="container-fluid p-3">
 
-        {{-- Filter Kategori dan Tahun Pengeluaran --}}
-        <div class="mb-4 d-flex justify-content-between align-items-center">
-            <div class="text-center">
+        {{-- Judul dan Filter --}}
+        <div class="row mb-4 align-items-center">
+            {{-- Judul --}}
+            <div class="col-12 col-md-6 text-center text-md-start mb-2 mb-md-0">
                 <h4 class="pt-2">Aktifitas Pengeluaran</h4>
             </div>
 
-            <div class="d-flex align-items-center">
-                <div>
-                    <select name="kategori_pengeluaran" id="kategori_pengeluaran" class="form-select" style="width: 150px;">
-                        <option value="">Kategori</option>
-                        @foreach ($categories->where('type', 'pengeluaran') as $category)
-                            <option value="{{ $category->id }}">
-                                {{ $category->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                
-                <div>
-                    <select name="tahun_pengeluaran" id="tahun_pengeluaran" class="form-select" style="width: 100px;">
-                        <option value="">Tahun</option>
-                        @foreach ($years as $year)
-                            <option value="{{ $year }}">{{ $year }}</option>
-                        @endforeach
-                    </select>
+            {{-- Filter --}}
+            <div class="col-12 col-md-6">
+                <div class="row g-2 justify-content-center justify-content-md-end">
+                    {{-- Kategori --}}
+                    <div class="col-6 col-sm-5 col-md-5">
+                        <select name="kategori_pengeluaran" id="kategori_pengeluaran" class="form-select w-100">
+                            <option value="">Kategori</option>
+                            @foreach ($categories->where('type', 'pengeluaran') as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- Tahun --}}
+                    <div class="col-6 col-sm-4 col-md-4">
+                        <select name="tahun_pengeluaran" id="tahun_pengeluaran" class="form-select w-100">
+                            <option value="">Tahun</option>
+                            @foreach ($years as $year)
+                                <option value="{{ $year }}">{{ $year }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
 
-        {{-- Tabel Pengeluaran --}}
+        {{-- Tabel --}}
         <div id="table-content-pengeluaran">
             @include('pages.table_pengeluaran', ['x' => $x])
         </div>

@@ -40,64 +40,76 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Desktop Only -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion d-none d-lg-block" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">NimBank <sup>1.0</sup></div>
-            </a>
+    <!-- Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">NimBank <sup>1.0</sup></div>
+    </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+    <!-- Nav Items -->
+    <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
 
-            <!-- Nav Item - Kategori -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('categories.index') }}">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Kategori</span></a>
-            </li>
+    <li class="nav-item {{ request()->routeIs('categories.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('categories.index') }}">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Kategori</span></a>
+    </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <li class="nav-item {{ request()->is('aktivitas/pemasukan') || request()->is('aktivitas/pengeluaran') ? 'active' : '' }}">
-                <a class="nav-link {{ request()->is('aktivitas/pemasukan') || request()->is('aktivitas/pengeluaran') ? '' : 'collapsed' }}" href="#" 
-                    data-toggle="collapse" 
-                    data-target="#collapseAktivitas"
-                    aria-expanded="{{ request()->is('aktivitas/pemasukan') || request()->is('aktivitas/pengeluaran') ? 'true' : 'false' }}"
-                    aria-controls="collapseAktivitas">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Aktivitas</span>
-                </a>
-                <div id="collapseAktivitas" class="collapse {{ request()->is('aktivitas/pemasukan') || request()->is('aktivitas/pengeluaran') ? 'show' : '' }}" 
-                    aria-labelledby="headingAktivitas" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {{ request()->is('aktivitas/pemasukan') ? 'active' : '' }}" href="{{ route('aktivitas.pemasukan') }}">Pemasukan</a>
-                        <a class="collapse-item {{ request()->is('aktivitas/pengeluaran') ? 'active' : '' }}" href="{{ route('aktivitas.pengeluaran') }}">Pengeluaran</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    <li class="nav-item {{ request()->is('aktivitas/*') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAktivitas">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Aktivitas</span>
+        </a>
+        <div id="collapseAktivitas" class="collapse {{ request()->is('aktivitas/*') ? 'show' : '' }}">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ request()->is('aktivitas/pemasukan') ? 'active' : '' }}" href="{{ route('aktivitas.pemasukan') }}">Pemasukan</a>
+                <a class="collapse-item {{ request()->is('aktivitas/pengeluaran') ? 'active' : '' }}" href="{{ route('aktivitas.pengeluaran') }}">Pengeluaran</a>
             </div>
+        </div>
+    </li>
+</ul>
 
-        </ul>
         <!-- End of Sidebar -->
+
+        <!-- Bottom Navbar - Mobile & Tablet Only -->
+<div class="d-lg-none fixed-bottom bg-white shadow-lg py-2 px-4 rounded-top-4" style="z-index: 1050;">
+    <div class="d-flex justify-content-around text-center">
+
+        <a href="{{ route('dashboard') }}" class="text-decoration-none {{ request()->routeIs('dashboard') ? 'text-primary fw-bold' : 'text-secondary' }}">
+            <i class="fas fa-home fa-lg"></i><br>
+            <small>Home</small>
+        </a>
+
+        <a href="{{ route('categories.index') }}" class="text-decoration-none {{ request()->routeIs('categories.index') ? 'text-primary fw-bold' : 'text-secondary' }}">
+            <i class="fas fa-list fa-lg"></i><br>
+            <small>Kategori</small>
+        </a>
+
+        <a href="{{ route('aktivitas.pemasukan') }}" class="text-decoration-none {{ request()->is('aktivitas/pemasukan') ? 'text-primary fw-bold' : 'text-secondary' }}">
+            <i class="fas fa-arrow-circle-up fa-lg"></i><br>
+            <small>Pemasuk</small>
+        </a>
+
+        <a href="{{ route('aktivitas.pengeluaran') }}" class="text-decoration-none {{ request()->is('aktivitas/pengeluaran') ? 'text-primary fw-bold' : 'text-secondary' }}">
+            <i class="fas fa-arrow-circle-down fa-lg"></i><br>
+            <small>Pengeluar</small>
+        </a>
+
+    </div>
+</div>
+
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

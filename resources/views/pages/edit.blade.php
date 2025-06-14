@@ -189,7 +189,7 @@
                 <!-- Kolom untuk Nominal dan Jenis -->
                 <div class="col-12 col-md-6 mb-3">
                     <label for="nominal" class="form-label">Nominal</label>
-                    <input type="number" name="nominal" id="nominal" class="form-control" value="{{ old('nominal', $a->nominal) }}" required>
+                    <input type="number" name="nominal" id="nominal" class="form-control panah" value="{{ old('nominal', $a->pemasukan ?? $a->pengeluaran) }}" required>
                 </div>
                 <div class="col-12 col-md-6 mb-3">
                     <label for="tipe" class="form-label">Jenis</label>

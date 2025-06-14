@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Keuangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $user = Auth::user();
+
+        $categories = Category::whereNull('user_id')
+            ->orWhere('user_id', Auth::id())
+            ->get();
+
         $a = Keuangan::all();
         $b = Keuangan::sum('pemasukan');
         $c = Keuangan::sum('pengeluaran');
@@ -33,6 +39,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'type' => $request->type,
+            'user_id' => Auth::id(), // ✅ ini penting
         ]);
 
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil ditambahkan.');

@@ -154,6 +154,10 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="mt-4 d-flex justify-content-center gap-2">
+                {{ $pemasukan->appends(request()->query())->links() }}
+            </div>
         </div>
     </div>
 @endsection

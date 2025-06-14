@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Keuangan;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AktifitasController extends Controller
 {
     public function pemasukan(Request $request)
     {
-        $query = Keuangan::with('kategori')->whereNotNull('pemasukan');
+        $userId = Auth::id();
+
+        $query = Keuangan::with('kategori')
+            ->where('user_id', $userId)
+            ->whereNotNull('pemasukan');
 
         if ($request->filled('kategori')) {
             $query->where('kategori_id', $request->kategori);
@@ -24,9 +29,12 @@ class AktifitasController extends Controller
             $query->whereYear('tanggal', $request->tahun);
         }
 
-        $pemasukan = $query->orderBy('tanggal', 'desc')->get();
-        $daftarKategori = Category::whereHas('keuangan', function ($query) {
-            $query->whereNotNull('pemasukan');
+        // ✅ Batasi maksimal 10.000 data dan paginate per 50 misalnya
+        $pemasukan = $query->orderBy('tanggal', 'desc')->limit(10000)->paginate(1);
+
+        $daftarKategori = Category::whereHas('keuangan', function ($query) use ($userId) {
+            $query->where('user_id', $userId)
+                ->whereNotNull('pemasukan');
         })->get();
 
         return view('aktivitas.pemasukan', compact('pemasukan', 'daftarKategori'));
@@ -34,7 +42,11 @@ class AktifitasController extends Controller
 
     public function pengeluaran(Request $request)
     {
-        $query = Keuangan::with('kategori')->whereNotNull('pengeluaran');
+        $userId = Auth::id();
+
+        $query = Keuangan::with('kategori')
+            ->where('user_id', $userId)
+            ->whereNotNull('pengeluaran');
 
         if ($request->filled('kategori')) {
             $query->where('kategori_id', $request->kategori);
@@ -48,17 +60,14 @@ class AktifitasController extends Controller
             $query->whereYear('tanggal', $request->tahun);
         }
 
-        $pengeluaran = $query->orderBy('tanggal', 'desc')->get();
-        $daftarKategori = Category::whereHas('keuangan', function ($query) {
-            $query->whereNotNull('pengeluaran');
+        // ✅ Batasi maksimal 10.000 data dan paginate per 50 misalnya
+        $pengeluaran = $query->orderBy('tanggal', 'desc')->limit(10000)->paginate(50);
+
+        $daftarKategori = Category::whereHas('keuangan', function ($query) use ($userId) {
+            $query->where('user_id', $userId)
+                ->whereNotNull('pengeluaran');
         })->get();
 
         return view('aktivitas.pengeluaran', compact('pengeluaran', 'daftarKategori'));
-
-        $pengeluaran = Keuangan::whereNotNull('pengeluaran')
-            ->orderBy('tanggal', 'desc')
-            ->get();
-
-        return view('aktivitas.pengeluaran', compact('pengeluaran'));
     }
 }

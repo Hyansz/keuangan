@@ -30,7 +30,7 @@ Route::get('/filter-pengeluaran', [KeuanganController::class, 'filterPengeluaran
 
 Route::get('/get-chart-data', [KeuanganController::class, 'getChartData'])->name('pages.getChartData');
 
-Route::resource('categories', CategoryController::class);
+Route::resource('categories', CategoryController::class)->middleware('auth');
 
 Route::get('/aktivitas/pemasukan', [AktifitasController::class, 'pemasukan'])->name('aktivitas.pemasukan');
 Route::get('/aktivitas/pengeluaran', [AktifitasController::class, 'pengeluaran'])->name('aktivitas.pengeluaran');

@@ -94,42 +94,41 @@
         @endif
 
         <!-- Hero Section -->
-<section
-    class="flex items-center justify-center flex-grow px-6 py-12"
-    style="min-height: 400px;"
->
-    <div
-        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-white"
-    >
-        <!-- Teks -->
-        <div class="text-center md:text-left px-2 md:px-0">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                Kelola Keuangan Pribadi Jadi Lebih Mudah
-            </h1>
-            <p class="text-base sm:text-lg md:text-xl mb-8">
-                Nimbank membantu kamu mencatat pemasukan dan pengeluaran
-                harian dengan mudah dan rapi.
-            </p>
-            <a
-                href="#fitur"
-                class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition inline-block"
+        <section
+            class="flex items-center justify-center flex-grow px-6 py-12"
+            style="min-height: 400px;"
+        >
+            <div
+                class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-white"
             >
-                Lihat Fitur
-            </a>
-        </div>
+                <!-- Teks -->
+                <div class="text-center md:text-left px-2 md:px-0">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+                        Kelola Keuangan Pribadi Jadi Lebih Mudah
+                    </h1>
+                    <p class="text-base sm:text-lg md:text-xl mb-8">
+                        Nimbank membantu kamu mencatat pemasukan dan pengeluaran
+                        harian dengan mudah dan rapi.
+                    </p>
+                    <a
+                        href="#fitur"
+                        class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition inline-block"
+                    >
+                        Lihat Fitur
+                    </a>
+                </div>
 
-        <!-- Gambar -->
-        <div class="flex justify-center md:justify-end px-2 md:px-0">
-            <img
-                src="{{ asset('assets/aplikasi-keuangan.png') }}"
-                alt="Ilustrasi Keuangan"
-                class="w-full max-w-xs sm:max-w-sm md:max-w-xl rounded-lg shadow-lg"
-                style="max-height: 360px; object-fit: contain;"
-            />
-        </div>
-    </div>
-</section>
-
+                <!-- Gambar -->
+                <div class="flex justify-center md:justify-end px-2 md:px-0">
+                    <img
+                        src="{{ asset('assets/aplikasi-keuangan.png') }}"
+                        alt="Ilustrasi Keuangan"
+                        class="w-full max-w-xs sm:max-w-sm md:max-w-xl rounded-lg shadow-lg"
+                        style="max-height: 360px; object-fit: contain;"
+                    />
+                </div>
+            </div>
+        </section>
 
         <!-- Optional: Animasi gelembung atau shape di background -->
         <div
